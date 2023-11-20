@@ -80,8 +80,8 @@ def create_table(analyzed_results):
     return pivot_df
 
 def main():
-    run_maven_tests(1)
-    test_results = parse_and_analyze_test_results(1)
+    run_maven_tests(3)
+    test_results = parse_and_analyze_test_results(3)
     df = create_table(test_results)
     print(df)
     csv_path = os.path.join(os.path.dirname(__file__), "test_results.csv")

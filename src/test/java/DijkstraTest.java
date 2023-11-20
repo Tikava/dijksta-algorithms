@@ -6,7 +6,7 @@ import java.util.List;
 public class DijkstraTest {
 
     @ParameterizedTest
-    @ValueSource(ints = { 10, 100, 1000, 10000, 100000 })
+    @ValueSource(ints = { 10, 100, 1000, 10000, 100000, 1000000 })
     public void testOriginalDijkstra(int graphSize) {
         List<Node<Integer>> graph = GraphGenerator.generateRandomGraph(graphSize);
 
