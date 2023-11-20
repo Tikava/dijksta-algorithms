@@ -4,30 +4,60 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <profiles>
+    <profile>
+        <id>custom-test-run</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <reportsDirectory>${project.build.directory}/surefire-reports/${custom.dir}</reportsDirectory>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+
+
     <!-- Project Information -->
     <groupId>com.tikava</groupId>
     <artifactId>algorithm-project</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Dijkstra's algorithm</name>
-    <description></description>
 
     <!-- Java Version -->
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source> <!-- Updated to Java 11 -->
+        <maven.compiler.target>11</maven.compiler.target> <!-- Updated to Java 11 -->
     </properties>
 
     <!-- Dependencies -->
     <dependencies>
-        <!-- JUnit Jupiter (JUnit 5) for unit testing -->
+        <!-- JUnit Jupiter API -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <artifactId>junit-jupiter-api</artifactId>
             <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Add additional dependencies here -->
+        <!-- JUnit Jupiter Params -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit Jupiter Engine -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.7.0</version>
+        </dependency>
     </dependencies>
 
     <!-- Build Settings -->
@@ -43,13 +73,19 @@
                 </configuration>
             </plugin>
 
-            <!-- Maven Surefire Plugin for running tests -->
+            <!-- Maven Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
+                <dependencies>
+                    <dependency>
+                            <groupId>org.junit.jupiter</groupId>
+                            <artifactId>junit-jupiter-engine</artifactId>
+                            <version>5.7.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
-
 </project>
